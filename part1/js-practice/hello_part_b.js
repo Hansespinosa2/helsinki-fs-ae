@@ -93,3 +93,35 @@ const average = function(a,b) {
 }
 
 const resultAverage = average(2,5)
+
+const arto = {
+    name: "Arto Hellas", 
+    age: 35,
+    education: 'PhD',
+    greet: function() {
+        console.log('hello, my name is ' + this.name)
+    }
+}
+
+arto.greet()
+
+// setTimeout(arto.greet(), 1000) // thos fails
+
+// Classes
+console.log("Moving on to clases now")
+
+class Person {
+    constructor(name,age) {
+        this.name = name
+        this.age = age
+    }
+    greet() {
+        console.log('Hello my name is ' + this.name)
+    }
+}
+
+const adam = new Person('Adam Ondra', 29)
+adam.greet()
+
+const janja = new Person('Janja Garnbret', 23)
+janja.greet()

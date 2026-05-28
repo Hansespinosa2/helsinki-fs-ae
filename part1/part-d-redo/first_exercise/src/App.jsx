@@ -8,46 +8,12 @@ const Button = ({onClick, text}) => {
   )
 }
 
-const DisplayAverageAndTotal = ({good, bad, total}) => {
-  let average = good - bad
-  if (total == 0) {
-    average = 0
-  } else {
-    average /= total
-  }
-
-
+const DisplayStatisticCell = ({statistic, text}) => {
   return (
-    <div>   
-      <DisplayStatistic statistic={total} text={"total"} />
-      <DisplayStatistic statistic={average} text ={"average"} />
-    </div>
-  )
-}
-
-const DisplayAllStatistics = ({good, neutral, bad}) => {
-  const total = good + neutral + bad
-  if (total !== 0) {
-  return (
-      <div>
-        <DisplayStatistic statistic={good} text={"good"} />
-        <DisplayStatistic statistic={neutral} text={"neutral"} />
-        <DisplayStatistic statistic={bad} text={"bad"} />
-        <DisplayAverageAndTotal good={good} bad={bad} total={total} />
-      </div>
-  )} else {
-    return (
-      <div>
-        <p>No feedback given</p>
-      </div>
-    )
-  }
-
-}
-
-const DisplayStatistic = ({statistic, text}) => {
-  return (
-  <p>{text} {statistic}</p>
+  <tr>
+    <td>{text}</td>
+    <td>{statistic}</td>
+  </tr>
 )
 }
 
@@ -66,7 +32,48 @@ function App() {
     setBad(bad+1)
   }
 
-  
+  const getAverage = ({good, bad, total}) => {
+  let average = good - bad
+  if (total == 0) {
+    average = 0
+  } else {
+    average /= total
+  }
+
+  return (
+    average
+  )
+}
+
+const DisplayAllStatistics = ({good, neutral, bad}) => {
+  const total = good + neutral + bad
+  let average = good - bad
+  if (total == 0) {
+    average = 0
+  } else {
+    average /= total
+  }
+
+  if (total !== 0) {
+  return (
+      <table>
+        <tbody>
+          <DisplayStatisticCell statistic={good} text={"good"} />
+          <DisplayStatisticCell statistic={neutral} text={"neutral"} />
+          <DisplayStatisticCell statistic={bad} text={"bad"} />
+          <DisplayStatisticCell statistic={total} text={"total"} />
+          <DisplayStatisticCell statistic={average} text ={"average"} />
+        </tbody>
+      </table>
+  )} else {
+    return (
+      <div>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+
+}
 
   return (
     <div>

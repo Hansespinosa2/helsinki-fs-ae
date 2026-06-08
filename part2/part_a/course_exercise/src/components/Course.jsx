@@ -1,6 +1,3 @@
-// import  Content  from './Content'
-// import  Footer  from './Footer'
-// import  Part  from './Part'
 
 function Part(props) {
   return (
